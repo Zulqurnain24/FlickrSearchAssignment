@@ -43,10 +43,10 @@ class FlickrSearchAssignment_FlickrSearchViewControllerTest: XCTestCase {
         waitForExpectations(timeout: timeInterval2, handler: nil)
         
         //Test Search logic
-        let expectation2 = self.expectation(description: "Search Cherry")
+        let expectation2 = self.expectation(description: "Search Cherry") as XCTestExpectation?
 
         let isSearchSuccessful = sut.performSearch(searchTerm: sut.searchTextField.text!, {
-          expectation2.fulfill()
+            expectation2?.fulfill()
      
             self.sut.collectionView.reloadData()
         })

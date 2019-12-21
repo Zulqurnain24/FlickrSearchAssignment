@@ -23,7 +23,7 @@ This class contains all the logic for footer cell in uicollectionview for search
 final class CustomFooterView : UICollectionReusableView, CustomFooterViewProtocol {
    
     @IBOutlet weak var refreshControlIndicator: UIActivityIndicatorView!
-    var isAnimatingFinal:Bool = false
+    var isAnimatingFinal:Bool = true
     var currentTransform:CGAffineTransform?
 
     override func awakeFromNib() {

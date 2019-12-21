@@ -10,7 +10,7 @@ import UIKit
 import PopOverMenu
 
 protocol FlickrSearchViewControllerProtocol {
-    func photoForIndexPath(indexPath: IndexPath) -> FlickrImage
+    func photoForIndexPath(indexPath: IndexPath) -> FlickrImage?
     func showOptions()
     func pullDataFromPersistentStore() -> [SearchRecord]
     func showSearchHistoryMenu()
@@ -54,6 +54,7 @@ final class FlickrSearchViewController: UICollectionViewController, FlickrSearch
     }
 
     func showTutorial(_ completionHandler: (() -> Void)? = nil) {
+        splashScreenImageView.frame = view.frame
         splashScreenImageView.configureAnimation(behaviour: .playTutorial)
         self.view.addSubview(splashScreenImageView)
         self.view.bringSubviewToFront(splashScreenImageView)
@@ -65,8 +66,10 @@ final class FlickrSearchViewController: UICollectionViewController, FlickrSearch
         })
     }
     
-    func photoForIndexPath(indexPath: IndexPath) -> FlickrImage {
-        return searches.searchResults[(indexPath as NSIndexPath).row]
+    func photoForIndexPath(indexPath: IndexPath) -> FlickrImage? {
+        guard let row = (indexPath as NSIndexPath).row as Int?,
+                  row < searches.searchResults.count else {return nil}
+        return searches.searchResults[row]
     }
     
     @IBAction func showOptionsAction(_ sender: Any) {

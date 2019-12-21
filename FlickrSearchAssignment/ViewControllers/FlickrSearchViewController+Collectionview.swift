@@ -53,7 +53,7 @@ extension FlickrSearchViewController {
         if indexPath.row == lastRowIndex && paging != nil {
             loadMorePhotos()
         }
-        let flickrPhoto = photoForIndexPath(indexPath: indexPath)
+        guard let flickrPhoto = photoForIndexPath(indexPath: indexPath) else { return }
         (cell as! FlickrPhotoCell).imageView.image = #imageLiteral(resourceName: "placeholder")
         ImageDownloadManager.shared.downloadImage(flickrPhoto, indexPath: indexPath) { (image, url, indexPathh, error) in
             if let indexPathNew = indexPathh {
@@ -69,7 +69,7 @@ extension FlickrSearchViewController {
     override func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         /* Reduce the priority of the network operation in case the user scrolls and an image is no longer visible. */
         if self.loadMore {return}
-        let flickrPhoto = photoForIndexPath(indexPath: indexPath)
+        guard let flickrPhoto = photoForIndexPath(indexPath: indexPath) else { return }
         ImageDownloadManager.shared.slowDownImageDownloadTaskfor(flickrPhoto)
     }
     
