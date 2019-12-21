@@ -1,0 +1,16 @@
+PODS:
+  - PopOverMenu (2.5.5)
+
+DEPENDENCIES:
+  - PopOverMenu
+
+SPEC REPOS:
+  trunk:
+    - PopOverMenu
+
+SPEC CHECKSUMS:
+  PopOverMenu: c65f126fe355380f7739ead771ae0247b3aaab04
+
+PODFILE CHECKSUM: 7e43dfaf80440d31f3b977aeab94f1b1ae2b484e
+
+COCOAPODS: 1.8.3
